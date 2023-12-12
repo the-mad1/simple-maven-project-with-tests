@@ -7,11 +7,16 @@ pipeline {
         maven "maven"
     }
 
+    parameters { 
+        string(name: 'BRANCH', defaultValue: 'master', description: '') 
+    }
+
     stages {
         stage('Build') {
             steps {
                 
                 git 'https://github.com/the-mad1/simple-maven-project-with-tests'
+                git checkout ${params.BRANCH}
 
                 // Run Maven on a Unix agent.
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
