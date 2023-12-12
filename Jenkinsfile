@@ -4,20 +4,20 @@ pipeline {
 
     tools {
        
-        maven "m3"
+        maven "maven"
     }
 
     stages {
         stage('Build') {
             steps {
                 
-                git 'https://github.com/adithnaveen/simple-maven-project-with-tests'
+                git 'https://github.com/the-mad1/simple-maven-project-with-tests'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
