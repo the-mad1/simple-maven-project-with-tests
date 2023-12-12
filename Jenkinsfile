@@ -15,8 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 
-                git 'https://github.com/the-mad1/simple-maven-project-with-tests'
-                git checkout ${params.BRANCH}
+                checkout([$class: 'GitSCM', branches: [[name: params.BRANCH]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/the-mad1/simple-maven-project-with-tests']]])
 
                 // Run Maven on a Unix agent.
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
